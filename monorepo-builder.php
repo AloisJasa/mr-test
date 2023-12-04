@@ -16,7 +16,7 @@ return static function (MBConfig $mbConfig): void {
 		__DIR__ . '/packages',
 	]);
 
-	$mbConfig->defaultBranch('master');
+	$mbConfig->defaultBranch('main');
 
 	$mbConfig->workers([
 		UpdateReplaceReleaseWorker::class,
