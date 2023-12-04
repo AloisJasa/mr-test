@@ -22,7 +22,7 @@
         }
     ],
     "replace": {
-        "aloisjasa/mr-test-sdk": "self.version"
+        "aloisjasa/mr-test-sdk": "0.2.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
