@@ -1,26 +1,29 @@
 {
-	"name": "aloisjasa/mr-test",
-	"authors": [
-		{
-			"name": "aloisjasa",
-			"email": "alois.jasa@peckadesign.cz"
-		}
-	],
-	"require-dev": {
-		"symplify/monorepo-builder": "11.1.17"
-	},
-	"autoload": {
-		"psr-4": {
-			"AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/",
-			"AloisJasa\\Monorepo\\": "packages/monorepo/src/"
-		}
-	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/AloisJasa/mr-test-sdk"
-		}
-	],
-	"minimum-stability": "dev",
-	"prefer-stable": true
+    "name": "aloisjasa/mr-test",
+    "authors": [
+        {
+            "name": "aloisjasa",
+            "email": "alois.jasa@peckadesign.cz"
+        }
+    ],
+    "require-dev": {
+        "symplify/monorepo-builder": "11.1.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "AloisJasa\\Monorepo\\": "packages/monorepo/src/",
+            "AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AloisJasa/mr-test-sdk"
+        }
+    ],
+    "replace": {
+        "aloisjasa/mr-test-sdk": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
