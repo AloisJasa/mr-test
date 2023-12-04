@@ -1,0 +1,26 @@
+{
+	"name": "aloisjasa/mr-test",
+	"authors": [
+		{
+			"name": "aloisjasa",
+			"email": "alois.jasa@peckadesign.cz"
+		}
+	],
+	"require": {
+	},
+	"require-dev": {
+	},
+	"autoload": {
+		"psr-4": {
+			"AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/"
+		}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/AloisJasa/mr-test-sdk"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
