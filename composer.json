@@ -6,13 +6,13 @@
 			"email": "alois.jasa@peckadesign.cz"
 		}
 	],
-	"require": {
-	},
 	"require-dev": {
+		"symplify/monorepo-builder": "11.1.17"
 	},
 	"autoload": {
 		"psr-4": {
-			"AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/"
+			"AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/",
+			"AloisJasa\\Monorepo\\": "packages/monorepo/src/"
 		}
 	},
 	"repositories": [
