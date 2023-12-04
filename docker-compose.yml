@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    image: peckadesign/php:8.1-p7product-dev
+    ports:
+      - 80
+    volumes:
+      - ./:/var/www/html:delegated
+      - ~/.composer/docker-cache:/root/.composer/cache:cached
+    environment:
+        VIRTUAL_HOST: mr-test.test
+        PHP_IDE_CONFIG: serverName=mr-test.test
+        COMPOSER_AUTH: '{"github-oauth": {"github.com": "$GITHUB_AUTH_TOKEN"}}'
+
+networks:
+  default:
+    external: true
+    name: nginx-proxy
