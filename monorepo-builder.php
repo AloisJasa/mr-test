@@ -19,14 +19,18 @@ return static function (MBConfig $mbConfig): void {
 	$mbConfig->defaultBranch('main');
 
 	$mbConfig->workers([
+//			+CreatePrepareReleaseBranchWorker::class,
 		UpdateReplaceReleaseWorker::class,
 		SetCurrentMutualDependenciesReleaseWorker::class,
-		AddTagToChangelogReleaseWorker::class,
-		UpdateComposerLockWorker::class,
-		TagVersionReleaseWorker::class,
-//		PushTagReleaseWorker::class,
+//			+WriteApplicationVersionWorker::class,
+//			+CommitPrepareReleaseWorker::class,
+		UpdateComposerLockWorker::class, // -
+		TagVersionReleaseWorker::class, // -
+		PushTagReleaseWorker::class, // -
 		SetNextMutualDependenciesReleaseWorker::class,
 		UpdateBranchAliasReleaseWorker::class,
-		PushNextDevReleaseWorker::class,
+		PushNextDevReleaseWorker::class, // -
+//			+CommitNextDevReleaseWorker::class,
+//			+PushPrepareReleaseBranchWorker::class,
 	]);
 };
