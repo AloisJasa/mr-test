@@ -1,6 +1,11 @@
 <?php declare(strict_types = 1);
 
+use AloisJasa\Monorepo\Worker\CommitNextDevReleaseWorker;
+use AloisJasa\Monorepo\Worker\CommitPrepareReleaseWorker;
+use AloisJasa\Monorepo\Worker\CreatePrepareReleaseBranchWorker;
+use AloisJasa\Monorepo\Worker\PushPrepareReleaseBranchWorker;
 use AloisJasa\Monorepo\Worker\UpdateComposerLockWorker;
+use AloisJasa\Monorepo\Worker\WriteApplicationVersionWorker;
 use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\AddTagToChangelogReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushNextDevReleaseWorker;
@@ -19,18 +24,18 @@ return static function (MBConfig $mbConfig): void {
 	$mbConfig->defaultBranch('main');
 
 	$mbConfig->workers([
-//			+CreatePrepareReleaseBranchWorker::class,
+		CreatePrepareReleaseBranchWorker::class, // NEW
 		UpdateReplaceReleaseWorker::class,
 		SetCurrentMutualDependenciesReleaseWorker::class,
-//			+WriteApplicationVersionWorker::class,
-//			+CommitPrepareReleaseWorker::class,
-		UpdateComposerLockWorker::class, // -
-		TagVersionReleaseWorker::class, // -
-		PushTagReleaseWorker::class, // -
+		WriteApplicationVersionWorker::class,// NEW
+		CommitPrepareReleaseWorker::class,// NEW
+		//		UpdateComposerLockWorker::class, // -
+		//		TagVersionReleaseWorker::class, // -
+		//		PushTagReleaseWorker::class, // -
 		SetNextMutualDependenciesReleaseWorker::class,
 		UpdateBranchAliasReleaseWorker::class,
-		PushNextDevReleaseWorker::class, // -
-//			+CommitNextDevReleaseWorker::class,
-//			+PushPrepareReleaseBranchWorker::class,
+		//		PushNextDevReleaseWorker::class, // -
+		CommitNextDevReleaseWorker::class,// NEW
+		PushPrepareReleaseBranchWorker::class,// NEW
 	]);
 };
