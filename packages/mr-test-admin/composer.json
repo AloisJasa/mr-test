@@ -1,0 +1,27 @@
+{
+    "name": "aloisjasa/mr-test-admin",
+    "description": "Admin",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "AloisJasa\\MrTestAdmin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aloisjasa",
+            "email": "alois.jasa@peckadesign.cz"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AloisJasa/mr-test-sdk"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "require": {
+        "aloisjasa/mr-test-sdk": "dev-main"
+    }
+}

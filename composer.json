@@ -12,6 +12,7 @@
     "autoload": {
         "psr-4": {
             "AloisJasa\\Monorepo\\": "packages/monorepo/src/",
+            "AloisJasa\\MrTestAdmin\\": "packages/mr-test-admin/src/",
             "AloisJasa\\MrTestSdk\\": "packages/mr-test-sdk/src/"
         }
     },
@@ -22,6 +23,7 @@
         }
     ],
     "replace": {
+        "aloisjasa/mr-test-admin": "self.version",
         "aloisjasa/mr-test-sdk": "0.3.6"
     },
     "minimum-stability": "dev",
