@@ -76,7 +76,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          tag: ${GITHUB_REF#refs/tags/}
+          tag: 2.4.0
 
           package_directory: 'packages/${{ matrix.package }}'
           repository_organization: 'AloisJasa'
