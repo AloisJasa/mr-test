@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "dbbd2ca191d23daf07f4dcef9df84881",
+    "packages": [
+        {
+            "name": "aloisjasa/mr-test-sdk",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AloisJasa/mr-test-sdk.git",
+                "reference": "f380ed5005bcf38f07533614ab2143974c0dcfbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AloisJasa/mr-test-sdk/zipball/f380ed5005bcf38f07533614ab2143974c0dcfbe",
+                "reference": "f380ed5005bcf38f07533614ab2143974c0dcfbe",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AloisJasa\\MrTestSdk\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "aloisjasa",
+                    "email": "alois.jasa@peckadesign.cz"
+                }
+            ],
+            "description": "SDK",
+            "support": {
+                "source": "https://github.com/AloisJasa/mr-test-sdk/tree/v2.2.0",
+                "issues": "https://github.com/AloisJasa/mr-test-sdk/issues"
+            },
+            "time": "2023-12-06T13:00:55+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
