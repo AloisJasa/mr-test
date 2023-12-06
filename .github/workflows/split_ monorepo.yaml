@@ -20,7 +20,7 @@ jobs:
       # required for matrix of packages set
       -   uses: shivammathur/setup-php@v2
           with:
-            php-version: 7.4
+            php-version: 8.1
             coverage: none
 
       - name: composer
@@ -32,7 +32,7 @@ jobs:
       # get package json list
       -
         id: output_data
-        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package storage --exclude-package storage-admin)"
+        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package mr-test)"
 
     # this step is needed, so the output gets to the next defined job
     outputs:
@@ -63,7 +63,7 @@ jobs:
           repository_organization: 'AloisJasa'
           repository_name: '${{ matrix.package }}'
           user_name: "GitHub Action"
-          user_email: "action@github.com"
+          user_email: "git@github.com"
           branch: "main"
 
       # with tag
@@ -81,5 +81,5 @@ jobs:
           repository_organization: 'AloisJasa'
           repository_name: '${{ matrix.package }}'
           user_name: "GitHub Action"
-          user_email: "action@github.com"
+          user_email: "git@github.com"
           branch: "main"
