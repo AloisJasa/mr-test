@@ -67,7 +67,7 @@ jobs:
           repository_organization: 'AloisJasa'
           repository_name: '${{ matrix.package }}'
           user_name: "GitHub Action"
-          user_email: "git@github.com"
+          user_email: "actions@github.com"
           branch: "main"
 
       # with tag
@@ -85,5 +85,5 @@ jobs:
           repository_organization: 'AloisJasa'
           repository_name: '${{ matrix.package }}'
           user_name: "GitHub Action"
-          user_email: "git@github.com"
+          user_email: "actions@github.com"
           branch: "main"
