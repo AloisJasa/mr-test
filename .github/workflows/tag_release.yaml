@@ -1,0 +1,34 @@
+# change this to the event type you want to get the data for
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'app_version'
+
+jobs:
+  push-tag:
+    if: github.event.commits[0].message == 'prepare release'
+    name: Tag release commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set variables
+        run: |
+          VER=$(cat app_version)
+          echo "TAG=$VER" >> $GITHUB_ENV
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+
+      - name: Push new tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_sha: ${{ github.event.commits[0].id }}
+          custom_tag: ${{ env.TAG }}
+
