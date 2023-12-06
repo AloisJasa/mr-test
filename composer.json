@@ -23,8 +23,8 @@
         }
     ],
     "replace": {
-        "aloisjasa/mr-test-admin": "2.3.0",
-        "aloisjasa/mr-test-sdk": "2.3.0"
+        "aloisjasa/mr-test-admin": "2.4.0",
+        "aloisjasa/mr-test-sdk": "2.4.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
