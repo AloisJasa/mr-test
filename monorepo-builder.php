@@ -33,9 +33,13 @@ return static function (MBConfig $mbConfig): void {
 		//		TagVersionReleaseWorker::class, // -
 		//		PushTagReleaseWorker::class, // -
 		SetNextMutualDependenciesReleaseWorker::class,
-		UpdateBranchAliasReleaseWorker::class,
 		//		PushNextDevReleaseWorker::class, // -
 		CommitNextDevReleaseWorker::class,// NEW
 		PushPrepareReleaseBranchWorker::class,// NEW
+
+		\AloisJasa\Monorepo\Worker\CheckoutMainWorker::class,
+//		\AloisJasa\Monorepo\Worker\OpenDevCommitWorker::class, // NEW
+		UpdateBranchAliasReleaseWorker::class,
+		PushNextDevReleaseWorker::class,
 	]);
 };
