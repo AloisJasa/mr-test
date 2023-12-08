@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use AloisJasa\Monorepo\Worker\CheckoutMainWorker;
 use AloisJasa\Monorepo\Worker\CommitNextDevReleaseWorker;
 use AloisJasa\Monorepo\Worker\CommitPrepareReleaseWorker;
 use AloisJasa\Monorepo\Worker\CreatePrepareReleaseBranchWorker;
@@ -24,22 +25,40 @@ return static function (MBConfig $mbConfig): void {
 	$mbConfig->defaultBranch('main');
 
 	$mbConfig->workers([
+
+		// git fetch
+		// git checkout main
+		// git pull
+
+
+// --------------- prepare brach start
+		//git checkout -b prepare-release-x.x.x
 		CreatePrepareReleaseBranchWorker::class, // NEW
+
 		UpdateReplaceReleaseWorker::class,
 		SetCurrentMutualDependenciesReleaseWorker::class,
 		WriteApplicationVersionWorker::class,// NEW
+
+		SetNextMutualDependenciesReleaseWorker::class,
+
 		CommitPrepareReleaseWorker::class,// NEW
+		PushPrepareReleaseBranchWorker::class,// NEW
+
+// --------------- prepare branch finish
+
+// --------------- open-dev-commit start
+		// git checkout main
+
 		//		UpdateComposerLockWorker::class, // -
 		//		TagVersionReleaseWorker::class, // -
 		//		PushTagReleaseWorker::class, // -
-		SetNextMutualDependenciesReleaseWorker::class,
 		//		PushNextDevReleaseWorker::class, // -
-		CommitNextDevReleaseWorker::class,// NEW
-		PushPrepareReleaseBranchWorker::class,// NEW
 
-		\AloisJasa\Monorepo\Worker\CheckoutMainWorker::class,
-//		\AloisJasa\Monorepo\Worker\OpenDevCommitWorker::class, // NEW
+		CheckoutMainWorker::class,
 		UpdateBranchAliasReleaseWorker::class,
 		PushNextDevReleaseWorker::class,
+		// --------------- open-dev-commit start
+		//		\AloisJasa\Monorepo\Worker\OpenDevCommitWorker::class, // NEW
+//		CommitNextDevReleaseWorker::class,// NEW
 	]);
 };
