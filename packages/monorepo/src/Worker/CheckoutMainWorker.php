@@ -22,7 +22,7 @@ final class CheckoutMainWorker implements ReleaseWorkerInterface
 	}
 	public function work(\PharIo\Version\Version $version) : void
 	{
-		$gitCheckoutMaster = 'git checkout main'; //TODO variable
+		$gitCheckoutMaster = 'git fetch && git checkout main'; //TODO variable
 		$this->processRunner->run($gitCheckoutMaster);
 	}
 	public function getDescription(\PharIo\Version\Version $version) : string
