@@ -1,11 +1,11 @@
 name: Split Monorepo
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - '*'
+#  push:
+#    branches:
+#      - main
+#    tags:
+#      - '*'
 
 jobs:
   provide_packages_json:
