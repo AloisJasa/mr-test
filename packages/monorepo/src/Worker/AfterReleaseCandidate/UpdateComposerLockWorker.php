@@ -1,12 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace AloisJasa\Monorepo\Worker;
+namespace AloisJasa\Monorepo\Worker\AfterReleaseCandidate;
 
+use AloisJasa\Monorepo\Stage;
+use AloisJasa\Monorepo\Worker\AbstractReleaseWorker;
 use PharIo\Version\Version;
-use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 
-class UpdateComposerLockWorker implements ReleaseWorkerInterface
+class UpdateComposerLockWorker extends AbstractReleaseWorker
 {
 	private ProcessRunner $processRunner;
 
@@ -28,5 +29,11 @@ class UpdateComposerLockWorker implements ReleaseWorkerInterface
 	public function getDescription(Version $version): string
 	{
 		return 'Update composer.lock to be in sync with composer.json';
+	}
+
+
+	public function getStage(): string
+	{
+		return Stage::AFTER_RELEASE_CANDIDATE->value;
 	}
 }
