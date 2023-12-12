@@ -1,11 +1,11 @@
 name: Split Monorepo
 
 on:
-#  push:
-#    branches:
-#      - main
-#    tags:
-#      - '*'
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
 
 jobs:
   provide_packages_json:
@@ -45,7 +45,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
+        package:
+          - mr-test-admin
+          - mr-test-sdk
 
     steps:
       - uses: actions/checkout@v3
