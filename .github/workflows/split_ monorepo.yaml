@@ -1,43 +1,13 @@
 name: Split Monorepo
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - '*'
+#  push:
+#    branches:
+#      - main
+#    tags:
+#      - '*'
 
 jobs:
-  provide_packages_json:
-    # see json juggling: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-6
-    # see https://stackoverflow.com/a/62953566/1348344
-    runs-on: ubuntu-latest
-
-    steps:
-      -
-        uses: actions/checkout@v3
-
-      # required for matrix of packages set
-      -   uses: shivammathur/setup-php@v2
-          with:
-            php-version: 8.1
-            coverage: none
-
-      - name: composer
-        run: |
-          curl -O "https://getcomposer.org/download/2.0.14/composer.phar"
-          chmod a+x composer.phar
-          php composer.phar install
-
-      # get package json list
-      -
-        id: output_data
-        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json --exclude-package mr-test)"
-
-    # this step is needed, so the output gets to the next defined job
-    outputs:
-      matrix: ${{ steps.output_data.outputs.matrix }}
-
   split_monorepo:
     needs: provide_packages_json
 
