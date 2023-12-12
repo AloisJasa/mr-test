@@ -3,5 +3,4 @@
 use Symplify\MonorepoBuilder\Config\MBConfig;
 
 return static function (MBConfig $containerConfigurator): void {
-	$services = $containerConfigurator->services();
 };

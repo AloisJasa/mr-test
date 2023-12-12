@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use Symplify\MonorepoBuilder\Config\MBConfig;
+use Symplify\MonorepoBuilder\ValueObject\Option;
 
 return static function (MBConfig $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/open-dev.php');
@@ -8,8 +9,7 @@ return static function (MBConfig $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/release.php');
 
 	$parameters = $containerConfigurator->parameters();
-	$parameters->set('enable_default_release_workers', false);
 
 	// require "--stage <name>" when release command is run
-	$parameters->set('is_stage_required', true);
+	$parameters->set(Option::IS_STAGE_REQUIRED, true);
 };
