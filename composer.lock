@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "912bdc84f38f2dc706451a6e3aa9c02a",
+    "content-hash": "de18ce2f0718396c7cb662192a1e6f1c",
     "packages": [],
     "packages-dev": [
         {
             "name": "symplify/monorepo-builder",
-            "version": "11.1.17",
+            "version": "11.2.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/monorepo-builder.git",
-                "reference": "a0549c6ba63a3ee35403f26e51563c82e4a599dc"
+                "reference": "444efe08701776cb1a03b9f3600e715697519aa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/monorepo-builder/zipball/a0549c6ba63a3ee35403f26e51563c82e4a599dc",
-                "reference": "a0549c6ba63a3ee35403f26e51563c82e4a599dc",
+                "url": "https://api.github.com/repos/symplify/monorepo-builder/zipball/444efe08701776cb1a03b9f3600e715697519aa6",
+                "reference": "444efe08701776cb1a03b9f3600e715697519aa6",
                 "shasum": ""
             },
             "require": {
@@ -33,13 +33,19 @@
                     "dev-main": "10.3-dev"
                 }
             },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Prefixed version of Not only Composer tools to build a Monorepo.",
             "support": {
-                "source": "https://github.com/symplify/monorepo-builder/tree/11.1.17"
+                "issues": "https://github.com/symplify/monorepo-builder/issues",
+                "source": "https://github.com/symplify/monorepo-builder/tree/11.2.20"
             },
             "funding": [
                 {
@@ -51,7 +57,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-10T15:19:39+00:00"
+            "time": "2023-11-17T08:30:16+00:00"
         }
     ],
     "aliases": [],
