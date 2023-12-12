@@ -30,4 +30,4 @@ jobs:
             -   name: Split
                 run: |
                     git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
-                    bash ./.github/monorepo/split-repositories.sh ${{ matrix.package }} "${{ secrets.ACTIONS_GIT_PUSH_TOKEN }}"
+                    bash ./.github/workflows/split-repositories.sh ${{ matrix.package }} "${{ secrets.ACTIONS_GIT_PUSH_TOKEN }}"
