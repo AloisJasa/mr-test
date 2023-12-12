@@ -15,8 +15,13 @@ echo "Monorepo Split – ${PACKAGE}"
 
 echo "Init environment"
 cd ${PWD}
+echo "mkdir -p ${PWD}/${TMP}/${PACKAGE}"
 mkdir -p ${PWD}/${TMP}/${PACKAGE}
+
+echo "clone --bare .git ${PWD}/${TMP}/${PACKAGE}"
 git clone --bare .git ${PWD}/${TMP}/${PACKAGE}
+
+echo "cd ${PWD}/${TMP}/${PACKAGE}"
 cd ${PWD}/${TMP}/${PACKAGE}
 
 git filter-repo --subdirectory-filter packages/${PACKAGE} --force
@@ -25,5 +30,4 @@ echo "dry-run"
 git push "${URL}.git" main --dry-run --force --verbose
 
 echo "git push"
-cd ${PWD}/${TMP}/${PACKAGE}
 git push "${URL}.git" main --force --verbose
