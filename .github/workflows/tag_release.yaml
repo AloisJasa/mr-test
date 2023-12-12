@@ -1,10 +1,13 @@
+name: Tag release
+
+
 # change this to the event type you want to get the data for
 on:
   push:
-#    branches:
-#      - 'main'
-#    paths:
-#      - 'app_version'
+    branches:
+      - 'main'
+    paths:
+      - 'app_version'
 
 jobs:
   push-tag:
