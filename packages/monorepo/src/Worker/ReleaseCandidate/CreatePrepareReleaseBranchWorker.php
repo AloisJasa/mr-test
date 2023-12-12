@@ -10,7 +10,8 @@ final class CreatePrepareReleaseBranchWorker extends AbstractCandidateWorker
 	public function work(Version $version): void
 	{
 		try {
-			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $this->prepareReleaseBranchName($version->getOriginalString()));
+			$newBranch = $this->prepareReleaseBranchName($version->getOriginalString());
+			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $newBranch);
 			$this->processRunner->run($gitAddCommitCommand);
 		} catch (Throwable $exception) {
 			// nothing to commit

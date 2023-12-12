@@ -10,8 +10,7 @@ final class CommitPrepareReleaseWorker extends AbstractCandidateWorker
 	public function work(Version $version): void
 	{
 		try {
-			$gitAddCommitCommand = 'git add . && git commit -m "prepare release"';
-			$this->processRunner->run($gitAddCommitCommand);
+			$this->commit("prepare release");
 		} catch (Throwable $exception) {
 			// nothing to commit
 		}

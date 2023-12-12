@@ -18,7 +18,7 @@ final class PushNextDevReleaseWorker extends AbstractOpenDevWorker
 	{
 		$versionInString = $this->getVersionDev($version);
 		$this->commit(sprintf("open %s", $versionInString));
-		$this->processRunner->run("git push");
+		$this->processRunner->run("git push"); //TODO push origin main ?
 	}
 
 

@@ -10,7 +10,10 @@ final class PushPrepareReleaseBranchWorker extends AbstractCandidateWorker
 	public function work(Version $version): void
 	{
 		try {
-			$gitAddCommitCommand = sprintf('git push --set-upstream origin "%s"', $this->prepareReleaseBranchName($version->getOriginalString()));
+			$gitAddCommitCommand = sprintf(
+				'git push --set-upstream origin "%s"',
+				$this->prepareReleaseBranchName($version->getOriginalString())
+			);
 			$this->processRunner->run($gitAddCommitCommand);
 		} catch (Throwable $exception) {
 			// nothing to commit
