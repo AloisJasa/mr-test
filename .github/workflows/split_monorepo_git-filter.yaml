@@ -1,0 +1,33 @@
+on:
+    push:
+        branches:
+            - 'main'
+concurrency:
+    group: split_monorepo-${{ github.ref }}
+    cancel-in-progress: true
+name: Monorepo split
+jobs:
+    split-branch:
+        name: Split branch
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                package:
+                    - mr-test-admin
+                    - mr-test-sdk
+        steps:
+            -   uses: actions/checkout@v4
+                with:
+                    ref: ${{ github.ref }}
+                    fetch-depth: 0
+
+            -   name: Install git-filter-repo
+                run: |
+                    sudo apt-get update
+                    sudo apt-get install -y git-filter-repo
+
+            -   name: Split
+                run: |
+                    git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
+                    bash ./.github/monorepo/split-repositories.sh ${{ matrix.package }} "${{ secrets.ACTIONS_GIT_PUSH_TOKEN }}"
