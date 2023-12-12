@@ -1,0 +1,44 @@
+name: Monorepo release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - 'minor'
+
+jobs:
+  release:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: Release
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: git config --global user.name "GitHub Action"
+      - run: git config --global user.email "action@github.com"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Composer
+        uses: ramsey/composer-install@v2
+
+#TODO: next version do proměnné a release volám vždy na konkrétní verzi (ať nevolám pokaždé minor/patch) – potenciál pro chybu
+
+      - name: Release
+        run: vendor/bin/monorepo-builder release ${{ inputs.version }} --stage 'release-candidate'
+
+      - name: Release
+        run: vendor/bin/monorepo-builder release ${{ inputs.version }} --stage 'open-dev'
