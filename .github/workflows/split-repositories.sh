@@ -11,7 +11,7 @@ set -u
 
 PWD=`pwd`
 
-echo"Monorepo Split – ${PACKAGE}"
+echo "Monorepo Split – ${PACKAGE}"
 
 echo "Init environment"
 cd ${PWD}
