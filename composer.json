@@ -7,7 +7,7 @@
         }
     ],
     "require-dev": {
-        "symplify/monorepo-builder": "11.2.20"
+        "symplify/monorepo-builder": "11.1.17"
     },
     "autoload": {
         "psr-4": {
