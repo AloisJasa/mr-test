@@ -22,8 +22,8 @@ cd ${PWD}/${TMP}/${PACKAGE}
 git filter-repo --subdirectory-filter packages/${PACKAGE} --force
 
 echo "dry-run"
-git push "${URL}${PACKAGE}.git" main --dry-run --force --verbose
+git push "${URL}.git" main --dry-run --force --verbose
 
 echo "git push"
 cd ${PWD}/${TMP}/${PACKAGE}
-git push "${URL}${PACKAGE}.git" main --force --verbose
+git push "${URL}.git" main --force --verbose
