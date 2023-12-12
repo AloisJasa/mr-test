@@ -37,8 +37,8 @@ jobs:
 
 #TODO: next version do proměnné a release volám vždy na konkrétní verzi (ať nevolám pokaždé minor/patch) – potenciál pro chybu
 
-      - name: Release
+      - name: Release – release-candidate
         run: vendor/bin/monorepo-builder release ${{ inputs.version }} --stage 'release-candidate'
 
-      - name: Release
+      - name: Release – open-dev
         run: vendor/bin/monorepo-builder release ${{ inputs.version }} --stage 'open-dev'
