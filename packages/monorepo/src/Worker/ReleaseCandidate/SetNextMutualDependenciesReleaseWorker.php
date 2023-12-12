@@ -1,39 +1,22 @@
-<?php
-
-declare (strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
 
-use AloisJasa\Monorepo\Stage;
-use AloisJasa\Monorepo\Worker\AbstractReleaseWorker;
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DependencyUpdater;
 use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-final class SetNextMutualDependenciesReleaseWorker extends AbstractReleaseWorker
+final class SetNextMutualDependenciesReleaseWorker extends AbstractCandidateWorker
 {
-	private ComposerJsonProvider $composerJsonProvider;
-
-	private DependencyUpdater $dependencyUpdater;
-
-	private PackageNamesProvider $packageNamesProvider;
-
-	private VersionUtils $versionUtils;
-
-
 	public function __construct(
-		ComposerJsonProvider $composerJsonProvider,
-		DependencyUpdater $dependencyUpdater,
-		PackageNamesProvider $packageNamesProvider,
-		VersionUtils $versionUtils
+		private readonly ComposerJsonProvider $composerJsonProvider,
+		private readonly DependencyUpdater $dependencyUpdater,
+		private readonly PackageNamesProvider $packageNamesProvider,
+		private readonly VersionUtils $versionUtils
 	)
 	{
-		$this->composerJsonProvider = $composerJsonProvider;
-		$this->dependencyUpdater = $dependencyUpdater;
-		$this->packageNamesProvider = $packageNamesProvider;
-		$this->versionUtils = $versionUtils;
 	}
 
 
@@ -52,12 +35,6 @@ final class SetNextMutualDependenciesReleaseWorker extends AbstractReleaseWorker
 	{
 		$versionInString = $this->versionUtils->getRequiredNextFormat($version);
 
-		return \sprintf('Set packages mutual dependencies to "%s" (alias of dev version)', $versionInString);
-	}
-
-
-	public function getStage(): string
-	{
-		return Stage::RELEASE_CANDIDATE->value;
+		return sprintf('Set packages mutual dependencies to "%s" (alias of dev version)', $versionInString);
 	}
 }

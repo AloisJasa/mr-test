@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php
 
+declare (strict_types = 1);
 
-namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
+namespace AloisJasa\Monorepo\Worker\OpenDev;
 
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DependencyUpdater;
@@ -9,13 +10,13 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-class SetCurrentMutualDependenciesReleaseWorker extends AbstractCandidateWorker
+final class SetNextMutualDependenciesReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(
-		private readonly VersionUtils $versionUtils,
-		private readonly DependencyUpdater $dependencyUpdater,
 		private readonly ComposerJsonProvider $composerJsonProvider,
-		private readonly PackageNamesProvider $packageNamesProvider
+		private readonly DependencyUpdater $dependencyUpdater,
+		private readonly PackageNamesProvider $packageNamesProvider,
+		private readonly VersionUtils $versionUtils
 	)
 	{
 	}
@@ -23,21 +24,19 @@ class SetCurrentMutualDependenciesReleaseWorker extends AbstractCandidateWorker
 
 	public function work(Version $version): void
 	{
-		$versionInString = $this->versionUtils->getRequiredFormat($version);
+		$versionInString = $this->versionUtils->getRequiredNextFormat($version);
 		$this->dependencyUpdater->updateFileInfosWithPackagesAndVersion(
 			$this->composerJsonProvider->getPackagesComposerFileInfos(),
 			$this->packageNamesProvider->provide(),
 			$versionInString
 		);
-		// give time to propagate values before commit
-		sleep(1);
 	}
 
 
 	public function getDescription(Version $version): string
 	{
-		$versionInString = $this->versionUtils->getRequiredFormat($version);
+		$versionInString = $this->versionUtils->getRequiredNextFormat($version);
 
-		return sprintf('Set packages mutual dependencies to "%s" version', $versionInString);
+		return sprintf('Set packages mutual dependencies to "%s" (alias of dev version)', $versionInString);
 	}
 }

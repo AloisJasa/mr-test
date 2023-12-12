@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
+namespace AloisJasa\Monorepo\Worker\OpenDev;
 
 use PharIo\Version\Version;
 
-class UpdateComposerLockWorker extends AbstractCandidateWorker
+class UpdateComposerLockWorker extends AbstractOpenDevWorker
 {
 	public function work(Version $version): void
 	{
