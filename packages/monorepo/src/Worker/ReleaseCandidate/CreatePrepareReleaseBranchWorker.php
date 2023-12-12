@@ -2,26 +2,15 @@
 
 namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
 
-use AloisJasa\Monorepo\Stage;
-use AloisJasa\Monorepo\Worker\AbstractReleaseWorker;
 use PharIo\Version\Version;
-use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 use Throwable;
 
-final class CreatePrepareReleaseBranchWorker extends AbstractReleaseWorker
+final class CreatePrepareReleaseBranchWorker extends AbstractCandidateWorker
 {
-	public function __construct(
-		private readonly ProcessRunner $processRunner)
-	{
-	}
-
-
 	public function work(Version $version): void
 	{
-		$branchName = sprintf("%s-%s", 'prepare-release', $version->getOriginalString());
-
 		try {
-			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $branchName);
+			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $this->prepareReleaseBranchName($version->getOriginalString()));
 			$this->processRunner->run($gitAddCommitCommand);
 		} catch (Throwable $exception) {
 			// nothing to commit
@@ -31,12 +20,10 @@ final class CreatePrepareReleaseBranchWorker extends AbstractReleaseWorker
 
 	public function getDescription(Version $version): string
 	{
-		return \sprintf('Create new prepare release branch for version "%s"', $version->getOriginalString());
-	}
-
-
-	public function getStage(): string
-	{
-		return Stage::RELEASE_CANDIDATE->value;
+		return sprintf(
+			'Create new prepare release branch "%s" for version "%s"',
+			$this->prepareReleaseBranchName($version->getOriginalString()),
+			$version->getOriginalString(),
+		);
 	}
 }

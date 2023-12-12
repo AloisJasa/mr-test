@@ -1,19 +1,14 @@
 <?php declare(strict_types = 1);
 
-namespace AloisJasa\Monorepo\Worker\AfterReleaseCandidate;
+namespace AloisJasa\Monorepo\Worker\OpenDev;
 
-use AloisJasa\Monorepo\Stage;
-use AloisJasa\Monorepo\Worker\AbstractReleaseWorker;
 use MonorepoBuilder202211\Symplify\PackageBuilder\Parameter\ParameterProvider;
 use PharIo\Version\Version;
-use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
-use Symplify\MonorepoBuilder\Utils\VersionUtils;
 use Symplify\MonorepoBuilder\ValueObject\Option;
 
-final class CheckoutMainWorker extends AbstractReleaseWorker
+final class CheckoutMainWorker extends AbstractOpenDevWorker
 {
 	public function __construct(
-		private readonly ProcessRunner $processRunner,
 		private readonly ParameterProvider $parameterProvider,
 	)
 	{
@@ -30,12 +25,6 @@ final class CheckoutMainWorker extends AbstractReleaseWorker
 	public function getDescription(Version $version) : string
 	{
 		return sprintf('Checkout default branch.', $this->getDefaultBranch());
-	}
-
-
-	public function getStage(): string
-	{
-		return Stage::AFTER_RELEASE_CANDIDATE->value;
 	}
 
 

@@ -3,9 +3,10 @@
 use Symplify\MonorepoBuilder\Config\MBConfig;
 
 return static function (MBConfig $containerConfigurator): void {
-	$containerConfigurator->import(__DIR__ . '/after-pre-release.php');
-	$containerConfigurator->import(__DIR__ . '/pre-release.php');
+	$containerConfigurator->import(__DIR__ . '/open-dev.php');
+	$containerConfigurator->import(__DIR__ . '/release-candidate.php');
 	$containerConfigurator->import(__DIR__ . '/release.php');
+	$containerConfigurator->import(__DIR__ . '/test.php');
 
 	$parameters = $containerConfigurator->parameters();
 	$parameters->set('enable_default_release_workers', false);
