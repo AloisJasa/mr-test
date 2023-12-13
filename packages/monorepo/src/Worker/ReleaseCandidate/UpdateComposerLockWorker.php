@@ -4,7 +4,7 @@ namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
 
 use PharIo\Version\Version;
 
-class UpdateComposerLockWorker extends AbstractCandidateWorker
+final class UpdateComposerLockWorker extends AbstractCandidateWorker
 {
 	public function work(Version $version): void
 	{

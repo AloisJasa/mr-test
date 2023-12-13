@@ -7,6 +7,9 @@ use Symplify\MonorepoBuilder\DevMasterAliasUpdater;
 use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
+/**
+ * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/UpdateBranchAliasReleaseWorker.php
+ */
 final class UpdateBranchAliasReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(

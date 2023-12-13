@@ -9,7 +9,10 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-class SetCurrentMutualDependenciesReleaseWorker extends AbstractCandidateWorker
+/**
+ * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/SetCurrentMutualDependenciesReleaseWorker.php
+ */
+final class SetCurrentMutualDependenciesReleaseWorker extends AbstractCandidateWorker
 {
 	public function __construct(
 		private readonly VersionUtils $versionUtils,

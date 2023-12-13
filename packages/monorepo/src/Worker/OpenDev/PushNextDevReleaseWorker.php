@@ -5,6 +5,9 @@ namespace AloisJasa\Monorepo\Worker\OpenDev;
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
+/**
+ * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/PushNextDevReleaseWorker.php
+ */
 final class PushNextDevReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(
