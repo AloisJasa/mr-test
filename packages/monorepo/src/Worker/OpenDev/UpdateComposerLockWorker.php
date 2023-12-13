@@ -4,7 +4,7 @@ namespace AloisJasa\Monorepo\Worker\OpenDev;
 
 use PharIo\Version\Version;
 
-class UpdateComposerLockWorker extends AbstractOpenDevWorker
+final class UpdateComposerLockWorker extends AbstractOpenDevWorker
 {
 	public function work(Version $version): void
 	{

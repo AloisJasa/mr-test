@@ -34,4 +34,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_sha: ${{ github.event.commits[0].id }}
           custom_tag: ${{ env.TAG }}
-

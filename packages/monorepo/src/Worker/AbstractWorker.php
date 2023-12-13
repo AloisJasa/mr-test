@@ -10,8 +10,6 @@ abstract class AbstractWorker implements StageAwareInterface
 {
 	protected ?ProcessRunner $processRunner = null;
 
-	private string $currentBranchName;
-
 
 	/**
 	 * @required
@@ -20,7 +18,6 @@ abstract class AbstractWorker implements StageAwareInterface
 		ProcessRunner $processRunner,
 	): void {
 		$this->processRunner = $processRunner;
-		$this->currentBranchName = $this->getProcessResult(['git', 'rev-parse', '--abbrev-ref', 'HEAD']);
 	}
 
 
@@ -47,5 +44,30 @@ abstract class AbstractWorker implements StageAwareInterface
 		$process->run();
 
 		return trim($process->getOutput());
+	}
+
+	protected function getCurrentBranch(): ?string
+	{
+		exec('git rev-parse --abbrev-ref HEAD',$outputs,$result_code);
+
+		return $result_code === 0 ? $outputs[0] : null;
+	}
+
+	protected function getDefaultBranch(): ?string
+	{
+		exec('git remote set-head origin -a');
+		exec("git symbolic-ref --short refs/remotes/origin/HEAD | cut -d '/' -f 2",$outputs,$result_code);
+
+		return $result_code === 0 ? $outputs[0] ?? null : null;
+	}
+
+
+	protected function releaseCandidateTagName(string $version): string
+	{
+		return sprintf(
+			'%s-%s',
+			$version,
+			'rc',
+		);
 	}
 }

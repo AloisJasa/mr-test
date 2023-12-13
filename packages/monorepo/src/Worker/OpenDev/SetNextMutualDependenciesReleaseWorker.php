@@ -10,6 +10,9 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
+/**
+ * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/SetNextMutualDependenciesReleaseWorker.php
+ */
 final class SetNextMutualDependenciesReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(

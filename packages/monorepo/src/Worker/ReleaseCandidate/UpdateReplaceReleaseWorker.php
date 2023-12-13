@@ -8,7 +8,10 @@ use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Exception\MissingComposerJsonException;
 use MonorepoBuilder202211\Symplify\SmartFileSystem\SmartFileInfo;
 
-class UpdateReplaceReleaseWorker extends AbstractCandidateWorker
+/**
+ * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/UpdateReplaceReleaseWorker.php
+ */
+final class UpdateReplaceReleaseWorker extends AbstractCandidateWorker
 {
 	public function __construct(
 		private readonly ComposerJsonProvider $composerJsonProvider,
