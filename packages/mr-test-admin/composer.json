@@ -21,11 +21,11 @@
     ],
     "prefer-stable": true,
     "require": {
-        "aloisjasa/mr-test-sdk": "^2.8"
+        "aloisjasa/mr-test-sdk": "^2.10"
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "2.9-dev"
+            "dev-main": "2.10-dev"
         }
     }
 }
