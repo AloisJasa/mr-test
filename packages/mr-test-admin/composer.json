@@ -20,12 +20,13 @@
         }
     ],
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
-        "aloisjasa/mr-test-sdk": "^2.10"
+        "aloisjasa/mr-test-sdk": "^2.8"
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "2.10-dev"
+            "dev-main": "2.8-dev"
         }
     }
 }
