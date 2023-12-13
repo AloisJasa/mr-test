@@ -12,8 +12,8 @@ return static function (MBConfig $containerConfigurator): void {
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\SetNextMutualDependenciesReleaseWorker::class,
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\UpdateComposerLockWorker::class,
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\CommitPrepareReleaseWorker::class,
+		\AloisJasa\Monorepo\Worker\ReleaseCandidate\TagRCVersionReleaseWorker::class,
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\PushPrepareReleaseBranchWorker::class,
-		// TODO x.x.x-rc tag
-		// TODO tag push
+		\AloisJasa\Monorepo\Worker\ReleaseCandidate\PushTagReleaseWorker::class,
 	]);
 };
