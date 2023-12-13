@@ -13,7 +13,7 @@ return static function (MBConfig $containerConfigurator): void {
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\UpdateComposerLockWorker::class,
 		\AloisJasa\Monorepo\Worker\ReleaseCandidate\CommitPrepareReleaseWorker::class,
 		//TODO \AloisJasa\Monorepo\Worker\ReleaseCandidate\TagRCVersionReleaseWorker::class,
-//		\AloisJasa\Monorepo\Worker\ReleaseCandidate\PushPrepareReleaseBranchWorker::class,
+		\AloisJasa\Monorepo\Worker\ReleaseCandidate\PushPrepareReleaseBranchWorker::class,
 		//TODO \AloisJasa\Monorepo\Worker\ReleaseCandidate\PushTagReleaseWorker::class,
 	]);
 };
