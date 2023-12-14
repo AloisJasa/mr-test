@@ -2,9 +2,10 @@
 
 set -eo pipefail
 
-PACKAGE=$1
-GH_TOKEN=$2
-TMP=tmp_split
+GH_TOKEN=$1
+PACKAGE=$2
+BRANCH=$3
+TMP="tmp_split/${RANDOM}"
 URL="https://${GH_TOKEN}@github.com/aloisjasa/${PACKAGE}"
 
 set -u
@@ -27,7 +28,9 @@ cd ${PWD}/${TMP}/${PACKAGE}
 git filter-repo --subdirectory-filter packages/${PACKAGE} --force
 
 echo "dry-run"
-git push "${URL}.git" main --dry-run --force --verbose
+git push "${URL}.git" ${BRANCH} --dry-run --verbose
+git push "${URL}.git" ${BRANCH} --tags --dry-run --verbose
 
 echo "git push"
-git push "${URL}.git" main --force --verbose
+git push "${URL}.git" ${BRANCH} --verbose
+git push "${URL}.git" ${BRANCH} --tags --verbose

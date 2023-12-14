@@ -25,6 +25,12 @@ jobs:
       - run: git config --global user.name "GitHub Action"
       - run: git config --global user.email "action@github.com"
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+
       - name: Install git-filter-repo
         run: |
           sudo apt-get update
@@ -33,4 +39,4 @@ jobs:
       - name: Split
         run: |
           git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
-          bash ./.github/workflows/split-repositories.sh ${{ matrix.package }} "${{ secrets.ACCESS_TOKEN }}"
+          bash ./.github/workflows/split-repositories.sh "${{ secrets.ACCESS_TOKEN }}" ${{ matrix.package }} main
