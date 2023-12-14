@@ -22,7 +22,7 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aloisjasa/mr-test-sdk": "^2.12"
+        "aloisjasa/mr-test-sdk": "^2.13"
     },
     "extra": {
         "branch-alias": {
