@@ -2,13 +2,16 @@
 
 namespace AloisJasa\Monorepo\Worker;
 
+use MonorepoBuilder202211\Nette\Utils\Strings;
 use MonorepoBuilder202211\Symfony\Component\Process\Process;
+use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\StageAwareInterface;
 use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 
 abstract class AbstractWorker implements StageAwareInterface
 {
 	protected ?ProcessRunner $processRunner = null;
+	protected ?ComposerJsonProvider $composerJsonProvider = null;
 
 
 	/**
@@ -16,8 +19,10 @@ abstract class AbstractWorker implements StageAwareInterface
 	 */
 	public function setup(
 		ProcessRunner $processRunner,
+		ComposerJsonProvider $composerJsonProvider,
 	): void {
 		$this->processRunner = $processRunner;
+		$this->composerJsonProvider = $composerJsonProvider;
 	}
 
 
@@ -68,6 +73,16 @@ abstract class AbstractWorker implements StageAwareInterface
 			'%s-%s',
 			$version,
 			'rc',
+		);
+	}
+
+
+	protected function providePackagesShortNames(): array
+	{
+		return array_map(static function($name){
+			return (string) Strings::after($name, '/', -1);
+		},
+			$this->composerJsonProvider->getPackageNames()
 		);
 	}
 }

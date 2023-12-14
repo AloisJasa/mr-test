@@ -5,7 +5,6 @@ namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
 
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DependencyUpdater;
-use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
@@ -17,7 +16,6 @@ final class SetCurrentMutualDependenciesReleaseWorker extends AbstractCandidateW
 	public function __construct(
 		private readonly VersionUtils $versionUtils,
 		private readonly DependencyUpdater $dependencyUpdater,
-		private readonly ComposerJsonProvider $composerJsonProvider,
 		private readonly PackageNamesProvider $packageNamesProvider
 	)
 	{

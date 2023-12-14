@@ -8,8 +8,13 @@ final class WriteApplicationVersionWorker extends AbstractCandidateWorker
 {
 	public function work(Version $version): void
 	{
-		$gitAddCommitCommand = sprintf('echo %s > app_version', $version->getOriginalString());
-		$this->processRunner->run($gitAddCommitCommand);
+
+		$this->processRunner->run(sprintf('echo %s > app_version', $version->getOriginalString()));
+		foreach ($this->providePackagesShortNames() as $package) {
+			$this->processRunner->run(
+				sprintf('echo %s > packages/%s/app_version', $version->getOriginalString(), $package)
+			);
+		}
 	}
 
 

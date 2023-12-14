@@ -4,7 +4,6 @@ namespace AloisJasa\Monorepo\Worker\OpenDev;
 
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DevMasterAliasUpdater;
-use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
 /**
@@ -14,7 +13,6 @@ final class UpdateBranchAliasReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(
 		private readonly DevMasterAliasUpdater $devMasterAliasUpdater,
-		private readonly ComposerJsonProvider $composerJsonProvider,
 		private readonly VersionUtils $versionUtils
 	)
 	{

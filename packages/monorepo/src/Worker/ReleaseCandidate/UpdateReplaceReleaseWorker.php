@@ -4,7 +4,6 @@ namespace AloisJasa\Monorepo\Worker\ReleaseCandidate;
 
 use PharIo\Version\Version;
 use MonorepoBuilder202211\Symplify\ComposerJsonManipulator\FileSystem\JsonFileManager;
-use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Exception\MissingComposerJsonException;
 use MonorepoBuilder202211\Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -14,7 +13,6 @@ use MonorepoBuilder202211\Symplify\SmartFileSystem\SmartFileInfo;
 final class UpdateReplaceReleaseWorker extends AbstractCandidateWorker
 {
 	public function __construct(
-		private readonly ComposerJsonProvider $composerJsonProvider,
 		private readonly JsonFileManager $jsonFileManager
 	)
 	{

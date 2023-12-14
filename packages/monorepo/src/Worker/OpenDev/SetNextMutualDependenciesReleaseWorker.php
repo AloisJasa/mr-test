@@ -6,7 +6,6 @@ namespace AloisJasa\Monorepo\Worker\OpenDev;
 
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DependencyUpdater;
-use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
@@ -16,7 +15,6 @@ use Symplify\MonorepoBuilder\Utils\VersionUtils;
 final class SetNextMutualDependenciesReleaseWorker extends AbstractOpenDevWorker
 {
 	public function __construct(
-		private readonly ComposerJsonProvider $composerJsonProvider,
 		private readonly DependencyUpdater $dependencyUpdater,
 		private readonly PackageNamesProvider $packageNamesProvider,
 		private readonly VersionUtils $versionUtils
