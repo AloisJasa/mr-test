@@ -2,8 +2,9 @@ on:
   push:
     branches:
       - 'main'
+      - 'release-\d+.\d+.\d' # example: release-45.2.98
 concurrency:
-  group: split_monorepo-${{ github.ref }}
+  group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
   cancel-in-progress: true
 name: Monorepo split
 jobs:
@@ -39,4 +40,4 @@ jobs:
       - name: Split
         run: |
           git config -l | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
-          bash ./.github/workflows/split-repositories.sh "${{ secrets.ACCESS_TOKEN }}" ${{ matrix.package }} main
+          bash ./.github/workflows/split-repositories.sh "${{ secrets.ACCESS_TOKEN }}" "${{ matrix.package }}" "${{ github.ref_name }}"
