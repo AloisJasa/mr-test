@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'release-\d+.\d+.\d' # example: release-45.2.98
+      - 'release-[0-9]+.[0-9]+.[0-9]' # example: release-45.2.98
 concurrency:
   group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
   cancel-in-progress: true
