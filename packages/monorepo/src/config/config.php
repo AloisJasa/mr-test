@@ -7,6 +7,7 @@ return static function (MBConfig $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/open-dev.php');
 	$containerConfigurator->import(__DIR__ . '/release-candidate.php');
 	$containerConfigurator->import(__DIR__ . '/release.php');
+	$containerConfigurator->import(__DIR__ . '/patch.php');
 
 	$parameters = $containerConfigurator->parameters();
 
