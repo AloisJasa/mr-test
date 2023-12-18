@@ -8,12 +8,12 @@ final class TagVersionReleaseWorker extends AbstractReleaseWorker
 {
 	public function work(Version $version): void
 	{
-		$this->processRunner->run('git tag ' . $this->releaseCandidateTagName($version->getOriginalString()));
+		$this->processRunner->run('git tag ' . $version->getOriginalString());
 	}
 
 
 	public function getDescription(Version $version): string
 	{
-		return sprintf('Add local tag "%s"', $this->releaseCandidateTagName($version->getOriginalString()));
+		return sprintf('Add local tag "%s"', $version->getOriginalString());
 	}
 }
