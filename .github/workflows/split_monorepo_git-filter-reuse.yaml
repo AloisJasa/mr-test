@@ -1,0 +1,24 @@
+on:
+  workflow_call:
+
+concurrency:
+  group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+name: Monorepo split
+jobs:
+  split-branch:
+    uses: AloisJasa/.github/.github/workflows/split_monorepo_git-filter.yaml@main
+    name: Split branch
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - mr-test-admin
+#          - mr-test-sdk
+    with:
+      organization: "AloisJasa"
+      package: "mr-test-admin"
+    secrets:
+      envPAT: ${{ secrets.ACCESS_TOKEN }}
