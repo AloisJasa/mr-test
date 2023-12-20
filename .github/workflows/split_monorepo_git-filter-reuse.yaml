@@ -1,18 +1,12 @@
 on:
-  workflow_call:
-    inputs:
-      version:
-        description: 'Version'
-        required: true
-        default: 'minor'
-        type: string
+  workflow_dispatch:
 
 concurrency:
   group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 
-name: Monorepo split
+name: Monorepo split - trigger
 jobs:
   split-branch:
     uses: AloisJasa/.github/.github/workflows/split_monorepo_git-filter.yaml@main
