@@ -21,4 +21,4 @@ jobs:
       organization: "AloisJasa"
       package: "mr-test-admin"
     secrets:
-      envPAT: ${{ secrets.ACCESS_TOKEN }}
+      gh-token: ${{ secrets.ACCESS_TOKEN }}
