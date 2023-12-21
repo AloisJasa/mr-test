@@ -30,4 +30,4 @@ jobs:
       organization: "aloisjasa"
       force: ${{ inputs.force == 'true' }}
     secrets:
-      gh-token: ${{ secrets.ACTIONS_WORKFLOW }}
+      gh-token: ${{ secrets.ACCESS_TOKEN }}
