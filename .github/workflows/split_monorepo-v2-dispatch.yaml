@@ -28,6 +28,6 @@ jobs:
     with:
       package: ${{ matrix.package }}
       organization: "aloisjasa"
-      force: ${{ inputs.force }}
+      force: ${{ inputs.force == 'true' }}
     secrets:
       gh-token: ${{ secrets.ACTIONS_WORKFLOW }}
