@@ -1,0 +1,31 @@
+name: Split Monorepo v2
+
+on:
+  workflow_dispatch:
+    force:
+      description: 'Force'
+      required: false
+      default: false
+      type: choice
+      options:
+        - true
+        - false
+concurrency:
+  group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  split-branch:
+    uses: peckadesign/.github/.github/workflows/split_monorepo.yml@master
+    name: Split branch
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - mr-test-admin
+          - mr-test-sdk
+    with:
+      package: ${{ matrix.package }}
+      organization: "aloisjasa"
+    secrets:
+      gh-token: ${{ secrets.ACTIONS_WORKFLOW }}
