@@ -1,15 +1,15 @@
-name: Split Monorepo v2
+name: Split Monorepo v2 - forcepush
 
 on:
   workflow_dispatch:
     force:
       description: 'Force'
       required: false
-      default: false
+      default: 'false'
       type: choice
       options:
-        - true
-        - false
+        - 'true'
+        - 'false'
 concurrency:
   group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
   cancel-in-progress: true
@@ -27,5 +27,6 @@ jobs:
     with:
       package: ${{ matrix.package }}
       organization: "aloisjasa"
+      force: ${{ inputs.force }}
     secrets:
       gh-token: ${{ secrets.ACTIONS_WORKFLOW }}
