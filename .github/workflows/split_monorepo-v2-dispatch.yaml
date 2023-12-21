@@ -11,13 +11,19 @@ on:
         options:
           - 'true'
           - 'false'
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
 concurrency:
   group: split_monorepo-${{ github.ref_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   split-branch:
-    uses: peckadesign/.github/.github/workflows/split_monorepo.yml@master
+    uses: peckadesign/.github/.github/workflows/split_monorepo.yaml@master
     name: Split branch
     strategy:
       fail-fast: false
