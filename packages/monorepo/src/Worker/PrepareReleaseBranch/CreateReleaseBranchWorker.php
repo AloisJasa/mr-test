@@ -23,8 +23,8 @@ final class CreateReleaseBranchWorker extends AbstractPrepareReleaseBranchWorker
 	{
 		return sprintf(
 			'Create new prepare release branch "%s" for version "%s"',
-			$this->prepareReleaseBranchName($version),
 			$this->releaseBranchName($version),
+			$version->getOriginalString(),
 		);
 	}
 }

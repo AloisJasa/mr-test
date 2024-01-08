@@ -27,7 +27,7 @@ final class PushReleaseBranchWorker extends AbstractPrepareReleaseBranchWorker
 		return sprintf(
 			'Push release branch "%s" for version "%s" to remote.',
 			$this->releaseBranchName($version),
-			$this->releaseBranchName($version),
+			$version->getOriginalString(),
 		);
 	}
 }

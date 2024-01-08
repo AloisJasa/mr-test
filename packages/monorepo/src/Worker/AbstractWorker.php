@@ -29,7 +29,7 @@ abstract class AbstractWorker implements StageAwareInterface
 
 	protected function prepareReleaseBranchName(Version $version): string
 	{
-		return sprintf("%s-%s.%s", 'prepare-release', $version->getMajor()->getValue(), $version->getMinor()->getValue());
+		return sprintf("v%s.%s-%s", $version->getMajor()->getValue(), $version->getMinor()->getValue(), 'prepare');
 	}
 
 
