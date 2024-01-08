@@ -9,6 +9,8 @@ return static function (MBConfig $containerConfigurator): void {
 	$containerConfigurator->import(__DIR__ . '/release.php');
 	$containerConfigurator->import(__DIR__ . '/patch.php');
 
+	$containerConfigurator->import(__DIR__ . '/prepare-release-branch.php');
+
 	$parameters = $containerConfigurator->parameters();
 
 	// require "--stage <name>" when release command is run
