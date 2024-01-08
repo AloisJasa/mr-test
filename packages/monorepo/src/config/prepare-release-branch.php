@@ -16,7 +16,7 @@ return static function (MBConfig $containerConfigurator): void {
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\WriteApplicationVersionWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\UpdateComposerLockWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CommitPrepareCommitWorker::class,
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PrepareTagVersionReleaseWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\AddPrepareReleaseTagWorker::class,
 
 		// 3.commit open-dev
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\SetNextMutualDependenciesReleaseWorker::class,
@@ -27,9 +27,9 @@ return static function (MBConfig $containerConfigurator): void {
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushPrepareReleaseBranchWorker::class,
 
 		// 5. merge prepare branch
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CheckoutMainWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CheckoutDefaultBranchWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\MergePrepareBranchWorker::class,
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushTagReleaseWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushPrepareReleaseTagWorker::class,
 
 		// 6. create release branch
 		// TODO check zda tag existuje
@@ -39,7 +39,7 @@ return static function (MBConfig $containerConfigurator): void {
 		// 7. commit release candidate commit
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CommitEmptyToReleaseBranchWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushReleaseBranchWorker::class,
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\ReleaseTagVersionReleaseWorker::class,
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushTagReleaseWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\AddReleaseTagWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushReleaseTagWorker::class,
 	]);
 };

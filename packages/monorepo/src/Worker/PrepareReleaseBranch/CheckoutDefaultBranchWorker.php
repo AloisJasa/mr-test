@@ -4,7 +4,7 @@ namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
 use PharIo\Version\Version;
 
-final class CheckoutMainWorker extends AbstractPrepareReleaseBranchWorker
+final class CheckoutDefaultBranchWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function work(Version $version) : void
 	{

@@ -4,7 +4,7 @@ namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
 use PharIo\Version\Version;
 
-final class PushTagReleaseWorker extends AbstractPrepareReleaseBranchWorker
+final class PushPrepareReleaseTagWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function work(Version $version): void
 	{
@@ -14,6 +14,6 @@ final class PushTagReleaseWorker extends AbstractPrepareReleaseBranchWorker
 
 	public function getDescription(Version $version): string
 	{
-		return \sprintf('Push "%s" tag to remote repository', $version->getVersionString());
+		return \sprintf('Push "%s" tag to remote repository', $this->prepareReleaseTagName($version->getOriginalString()));
 	}
 }

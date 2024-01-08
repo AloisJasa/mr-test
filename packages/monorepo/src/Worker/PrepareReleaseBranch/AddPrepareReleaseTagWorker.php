@@ -4,7 +4,7 @@ namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
 use PharIo\Version\Version;
 
-final class PrepareTagVersionReleaseWorker extends AbstractPrepareReleaseBranchWorker
+final class AddPrepareReleaseTagWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function work(Version $version): void
 	{
