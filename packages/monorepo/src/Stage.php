@@ -8,4 +8,6 @@ enum Stage: string
 	case OPEN_DEV = 'open-dev';
 	case RELEASE = 'release';
 	case PATCH = 'patch';
+	case PREPARE_RELEASE_BRANCH = 'prepare-release-branch';
+	case RELEASE_BRANCH = 'release-branch';
 }

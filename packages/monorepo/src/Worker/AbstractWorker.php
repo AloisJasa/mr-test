@@ -28,7 +28,13 @@ abstract class AbstractWorker implements StageAwareInterface
 
 	protected function prepareReleaseBranchName(string $version): string
 	{
-		return sprintf("%s-%s", 'release', $version);
+		return sprintf("%s-%s", 'prepare-release', $version);
+	}
+
+
+	protected function releaseBranchName(string $version): string
+	{
+		return sprintf("%s%s", 'v', $version);
 	}
 
 
@@ -64,6 +70,16 @@ abstract class AbstractWorker implements StageAwareInterface
 		exec("git symbolic-ref --short refs/remotes/origin/HEAD | cut -d '/' -f 2",$outputs,$result_code);
 
 		return $result_code === 0 ? $outputs[0] ?? null : null;
+	}
+
+
+	protected function prepareReleaseTagName(string $version): string
+	{
+		return sprintf(
+			'%s-%s',
+			$version,
+			'prepare',
+		);
 	}
 
 
