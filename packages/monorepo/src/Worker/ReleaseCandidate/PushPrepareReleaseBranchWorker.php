@@ -12,7 +12,7 @@ final class PushPrepareReleaseBranchWorker extends AbstractCandidateWorker
 		try {
 			$gitAddCommitCommand = sprintf(
 				'git push --set-upstream origin "%s"',
-				$this->prepareReleaseBranchName($version->getOriginalString())
+				$this->prepareReleaseBranchName($version)
 			);
 			$this->processRunner->run($gitAddCommitCommand);
 		} catch (Throwable $exception) {
@@ -25,7 +25,7 @@ final class PushPrepareReleaseBranchWorker extends AbstractCandidateWorker
 	{
 		return sprintf(
 			'Push prepare release branch "%s" for version "%s" to remote.',
-			$this->prepareReleaseBranchName($version->getOriginalString()),
+			$this->prepareReleaseBranchName($version),
 			$version->getOriginalString(),
 		);
 	}

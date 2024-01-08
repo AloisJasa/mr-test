@@ -5,14 +5,17 @@ namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 use PharIo\Version\Version;
 use Throwable;
 
-final class CreatePrepareReleaseBranchWorker extends AbstractPrepareReleaseBranchWorker
+final class CommitEmptyToReleaseBranchWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function work(Version $version): void
 	{
 		try {
-			$newBranch = $this->prepareReleaseBranchName($version);
-			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $newBranch);
-			$this->processRunner->run($gitAddCommitCommand);
+			$this->processRunner->run(
+				sprintf(
+					'git commit --message="Release candidate %s" --allow-empty',
+					$version->getOriginalString(),
+				)
+			);
 		} catch (Throwable $exception) {
 			// nothing to commit
 		}
@@ -22,8 +25,7 @@ final class CreatePrepareReleaseBranchWorker extends AbstractPrepareReleaseBranc
 	public function getDescription(Version $version): string
 	{
 		return sprintf(
-			'Create new prepare release branch "%s" for version "%s"',
-			$this->prepareReleaseBranchName($version),
+			'Commit empty release candidate commit for version "%s"',
 			$version->getOriginalString(),
 		);
 	}

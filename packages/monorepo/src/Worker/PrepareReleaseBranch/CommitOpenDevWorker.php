@@ -20,7 +20,7 @@ final class CommitOpenDevWorker extends AbstractPrepareReleaseBranchWorker
 	public function work(Version $version): void
 	{
 		$versionInString = $this->getVersionDev($version);
-		$this->commit(sprintf("open %s", $versionInString));
+		$this->commit(sprintf("Open %s", $versionInString));
 	}
 
 

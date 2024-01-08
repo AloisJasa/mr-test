@@ -10,8 +10,8 @@ final class MergeReleaseBranchWorker extends AbstractReleaseWorker
 	{
 		$gitCheckoutMaster = sprintf(
 			'git merge --no-ff -m "Merge %s" %s',
-			$this->prepareReleaseBranchName($version->getOriginalString()),
-			$this->prepareReleaseBranchName($version->getOriginalString()),
+			$this->prepareReleaseBranchName($version),
+			$this->prepareReleaseBranchName($version),
 		);
 		$this->processRunner->run($gitCheckoutMaster);
 		$this->processRunner->run("git push");

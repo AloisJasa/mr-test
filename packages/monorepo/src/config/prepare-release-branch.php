@@ -29,16 +29,17 @@ return static function (MBConfig $containerConfigurator): void {
 		// 5. merge prepare branch
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CheckoutMainWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\MergePrepareBranchWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushTagReleaseWorker::class,
 
-//		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushTagReleaseWorker::class,
-
-		// 6. create&push release branch
+		// 6. create release branch
 		// TODO check zda tag existuje
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CreateReleaseBranchWorker::class,
-
 		// TODO check zda jsem opravdu na správně větvi
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\ReleaseTagVersionReleaseWorker::class,
 
+		// 7. commit release candidate commit
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CommitEmptyToReleaseBranchWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushReleaseBranchWorker::class,
+		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\ReleaseTagVersionReleaseWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\PushTagReleaseWorker::class,
 	]);
 };

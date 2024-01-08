@@ -9,9 +9,9 @@ final class MergePrepareBranchWorker extends AbstractPrepareReleaseBranchWorker
 	public function work(Version $version) : void
 	{
 		$gitCheckoutMaster = sprintf(
-			'git merge --no-ff -m "Merge %s" %s',
-			$this->prepareReleaseBranchName($version->getOriginalString()),
-			$this->prepareReleaseBranchName($version->getOriginalString()),
+			'git merge --no-ff -m "Merge prepare release branch %s" %s',
+			$this->prepareReleaseBranchName($version),
+			$this->prepareReleaseBranchName($version),
 		);
 		$this->processRunner->run($gitCheckoutMaster);
 		$this->processRunner->run("git push");
@@ -20,6 +20,6 @@ final class MergePrepareBranchWorker extends AbstractPrepareReleaseBranchWorker
 
 	public function getDescription(Version $version) : string
 	{
-		return sprintf('Checkout default branch "%s".', $this->getDefaultBranch());
+		return sprintf('Merge prepare release branch %s.', $this->prepareReleaseBranchName($version));
 	}
 }

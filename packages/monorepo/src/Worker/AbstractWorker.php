@@ -4,6 +4,7 @@ namespace AloisJasa\Monorepo\Worker;
 
 use MonorepoBuilder202211\Nette\Utils\Strings;
 use MonorepoBuilder202211\Symfony\Component\Process\Process;
+use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\StageAwareInterface;
 use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
@@ -26,15 +27,15 @@ abstract class AbstractWorker implements StageAwareInterface
 	}
 
 
-	protected function prepareReleaseBranchName(string $version): string
+	protected function prepareReleaseBranchName(Version $version): string
 	{
-		return sprintf("%s-%s", 'prepare-release', $version);
+		return sprintf("%s-%s.%s", 'prepare-release', $version->getMajor()->getValue(), $version->getMinor()->getValue());
 	}
 
 
-	protected function releaseBranchName(string $version): string
+	protected function releaseBranchName(Version $version): string
 	{
-		return sprintf("%s%s", 'v', $version);
+		return sprintf("%s%s.%s", 'v', $version->getMajor()->getValue(), $version->getMinor()->getValue());
 	}
 
 
@@ -76,7 +77,7 @@ abstract class AbstractWorker implements StageAwareInterface
 	protected function prepareReleaseTagName(string $version): string
 	{
 		return sprintf(
-			'%s-%s',
+			'v%s-%s',
 			$version,
 			'prepare',
 		);

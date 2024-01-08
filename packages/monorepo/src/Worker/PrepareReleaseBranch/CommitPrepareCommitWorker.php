@@ -10,7 +10,10 @@ final class CommitPrepareCommitWorker extends AbstractPrepareReleaseBranchWorker
 	public function work(Version $version): void
 	{
 		try {
-			$this->commit("prepare release");
+			$this->commit(sprintf(
+				'Prepare release files for version "%s"',
+				$version->getOriginalString(),
+			));
 		} catch (Throwable $exception) {
 			// nothing to commit
 		}
@@ -19,6 +22,9 @@ final class CommitPrepareCommitWorker extends AbstractPrepareReleaseBranchWorker
 
 	public function getDescription(Version $version): string
 	{
-		return 'Commit prepare release files"';
+		return sprintf(
+			'Commit prepare release files for version "%s"',
+			$version->getOriginalString(),
+		);
 	}
 }

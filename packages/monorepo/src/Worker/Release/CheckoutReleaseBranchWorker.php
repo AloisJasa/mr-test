@@ -8,7 +8,7 @@ final class CheckoutReleaseBranchWorker extends AbstractReleaseWorker
 {
 	public function work(Version $version) : void
 	{
-		$gitCheckoutMaster = sprintf('git fetch && git checkout %s', $this->prepareReleaseBranchName($version->getOriginalString()));
+		$gitCheckoutMaster = sprintf('git fetch && git checkout %s', $this->prepareReleaseBranchName($version));
 		$this->processRunner->run($gitCheckoutMaster);
 	}
 

@@ -10,7 +10,7 @@ final class CreatePrepareReleaseBranchWorker extends AbstractCandidateWorker
 	public function work(Version $version): void
 	{
 		try {
-			$newBranch = $this->prepareReleaseBranchName($version->getOriginalString());
+			$newBranch = $this->prepareReleaseBranchName($version);
 			$gitAddCommitCommand = sprintf('git checkout -b "%s"', $newBranch);
 			$this->processRunner->run($gitAddCommitCommand);
 		} catch (Throwable $exception) {
@@ -23,7 +23,7 @@ final class CreatePrepareReleaseBranchWorker extends AbstractCandidateWorker
 	{
 		return sprintf(
 			'Create new prepare release branch "%s" for version "%s"',
-			$this->prepareReleaseBranchName($version->getOriginalString()),
+			$this->prepareReleaseBranchName($version),
 			$version->getOriginalString(),
 		);
 	}
