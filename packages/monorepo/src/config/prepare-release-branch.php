@@ -21,7 +21,6 @@ return static function (MBConfig $containerConfigurator): void {
 		// 3.commit open-dev
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\SetNextMutualDependenciesReleaseWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\UpdateBranchAliasReleaseWorker::class,
-		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\UpdateComposerLockWorker::class,
 		\AloisJasa\Monorepo\Worker\PrepareReleaseBranch\CommitOpenDevWorker::class,
 
 		// 4. push
