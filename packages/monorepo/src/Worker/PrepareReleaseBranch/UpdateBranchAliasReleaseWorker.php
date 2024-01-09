@@ -3,6 +3,8 @@
 namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
 use PharIo\Version\Version;
+use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
+use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 use Symplify\MonorepoBuilder\DevMasterAliasUpdater;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
@@ -12,10 +14,13 @@ use Symplify\MonorepoBuilder\Utils\VersionUtils;
 final class UpdateBranchAliasReleaseWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function __construct(
+		public ProcessRunner $processRunner,
+		public ComposerJsonProvider $composerJsonProvider,
 		private readonly DevMasterAliasUpdater $devMasterAliasUpdater,
 		private readonly VersionUtils $versionUtils
 	)
 	{
+		parent::__construct($processRunner, $composerJsonProvider);
 	}
 
 

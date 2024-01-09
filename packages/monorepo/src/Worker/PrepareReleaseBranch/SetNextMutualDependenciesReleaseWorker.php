@@ -6,7 +6,9 @@ namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\DependencyUpdater;
+use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Package\PackageNamesProvider;
+use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
 /**
@@ -15,11 +17,14 @@ use Symplify\MonorepoBuilder\Utils\VersionUtils;
 final class SetNextMutualDependenciesReleaseWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function __construct(
+		public ProcessRunner $processRunner,
+		public ComposerJsonProvider $composerJsonProvider,
 		private readonly DependencyUpdater $dependencyUpdater,
 		private readonly PackageNamesProvider $packageNamesProvider,
 		private readonly VersionUtils $versionUtils
 	)
 	{
+		parent::__construct($processRunner, $composerJsonProvider);
 	}
 
 
