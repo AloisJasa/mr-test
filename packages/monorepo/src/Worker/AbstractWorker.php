@@ -11,19 +11,11 @@ use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 
 abstract class AbstractWorker implements StageAwareInterface
 {
-	protected ?ProcessRunner $processRunner = null;
-	protected ?ComposerJsonProvider $composerJsonProvider = null;
-
-
-	/**
-	 * @required
-	 */
-	public function setup(
-		ProcessRunner $processRunner,
-		ComposerJsonProvider $composerJsonProvider,
-	): void {
-		$this->processRunner = $processRunner;
-		$this->composerJsonProvider = $composerJsonProvider;
+	public function __construct(
+		public ProcessRunner $processRunner,
+		public ComposerJsonProvider $composerJsonProvider,
+	)
+	{
 	}
 
 

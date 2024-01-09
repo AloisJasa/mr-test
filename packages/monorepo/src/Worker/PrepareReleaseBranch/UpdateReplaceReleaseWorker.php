@@ -2,10 +2,12 @@
 
 namespace AloisJasa\Monorepo\Worker\PrepareReleaseBranch;
 
-use PharIo\Version\Version;
 use MonorepoBuilder202211\Symplify\ComposerJsonManipulator\FileSystem\JsonFileManager;
+use PharIo\Version\Version;
+use Symplify\MonorepoBuilder\FileSystem\ComposerJsonProvider;
 use Symplify\MonorepoBuilder\Release\Exception\MissingComposerJsonException;
 use MonorepoBuilder202211\Symplify\SmartFileSystem\SmartFileInfo;
+use Symplify\MonorepoBuilder\Release\Process\ProcessRunner;
 
 /**
  * @see https://github.com/symplify/monorepo-builder/blob/main/packages/Release/ReleaseWorker/UpdateReplaceReleaseWorker.php
@@ -13,9 +15,12 @@ use MonorepoBuilder202211\Symplify\SmartFileSystem\SmartFileInfo;
 final class UpdateReplaceReleaseWorker extends AbstractPrepareReleaseBranchWorker
 {
 	public function __construct(
+		public ProcessRunner $processRunner,
+		public ComposerJsonProvider $composerJsonProvider,
 		private readonly JsonFileManager $jsonFileManager
 	)
 	{
+		parent::__construct($processRunner, $composerJsonProvider);
 	}
 
 
